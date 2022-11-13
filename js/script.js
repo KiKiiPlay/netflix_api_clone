@@ -6,18 +6,44 @@ const deleteMovies = function (id) {
     method: "DELETE",
     headers: {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzZlM2VmM2Y4MGYxYTAwMTVkOGExMzYiLCJpYXQiOjE2NjgxNjk0NTksImV4cCI6MTY2OTM3OTA1OX0.Btk_yyaDqLA60hRIlbdKtlmGspj8DWDoqkIbWoGmB0k",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzcwZTkyZGM5ODM4NjAwMTVhMzUwNjUiLCJpYXQiOjE2NjgzNDQxMDksImV4cCI6MTY2OTU1MzcwOX0.O6zbMgaXZKup450D5PDDsxGN2fE5Py3yLNPcnG1QHs0",
     },
   })
     .then((response) => response.json())
     .then((res) => console.log(res));
 };
 
+function addNewMovie() {
+  const body = {
+    name: "TESsdvcsdT",
+    description: "Tessdvst",
+    category: "horror",
+    imageUrl: "dcs",
+  };
+
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzcwZTkyZGM5ODM4NjAwMTVhMzUwNjUiLCJpYXQiOjE2NjgzNDQxMDksImV4cCI6MTY2OTU1MzcwOX0.O6zbMgaXZKup450D5PDDsxGN2fE5Py3yLNPcnG1QHs0",
+  };
+
+  return fetch("https://striveschool-api.herokuapp.com/api/movies", {
+    method: "POST",
+    body: JSON.stringify(body),
+    headers: headers,
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => console.log(data))
+    .catch((error) => console.error(error));
+}
+
 window.onload = () => {
   fetch("https://striveschool-api.herokuapp.com/api/movies/horror", {
     headers: {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzZlM2VmM2Y4MGYxYTAwMTVkOGExMzYiLCJpYXQiOjE2NjgxNjk0NTksImV4cCI6MTY2OTM3OTA1OX0.Btk_yyaDqLA60hRIlbdKtlmGspj8DWDoqkIbWoGmB0k",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzcwZTkyZGM5ODM4NjAwMTVhMzUwNjUiLCJpYXQiOjE2NjgzNDQxMDksImV4cCI6MTY2OTU1MzcwOX0.O6zbMgaXZKup450D5PDDsxGN2fE5Py3yLNPcnG1QHs0",
     },
   })
     .then((response) => response.json())
@@ -44,3 +70,6 @@ window.onload = () => {
       });
     });
 };
+
+const input = document.getElementById("movieName");
+console.log(input.value);
